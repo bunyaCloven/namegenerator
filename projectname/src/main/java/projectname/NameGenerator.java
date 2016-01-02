@@ -24,11 +24,11 @@ public class NameGenerator implements Runnable {
 	}
 
 	private char[] generateName() {
-		char[] chars = new char[random.nextInt(10)];
+		boolean validated = true;
+		char[] chars = new char[random.nextInt(20)];
 		for (int i = 0; i < chars.length; i++) {
 			chars[i] = newChar();
 		}
-		boolean validated = true;
 		for (NameValidator val : validators) {
 			validated &= val.validate(chars);
 		}
