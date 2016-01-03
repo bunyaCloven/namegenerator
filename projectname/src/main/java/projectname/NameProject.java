@@ -24,30 +24,26 @@ public class NameProject {
 		int count = 0;
 		int maxCount = 0;
 		for (char x : input) {
-			boolean isVowel = false;
-			for (char vowel : vowels) {
-				if (vowel == x) {
-					isVowel = true;
-				}
+			if (isVowel(x) == streakVowel) {
+				count++;
+			} else {
+				count = 1;
 			}
-			if (isVowel) {
-				if (streakVowel) {
-					count++;
-				} else {
-					count = 1;
-				}
-			} else if (!isVowel) {
-				if (!streakVowel) {
-					count++;
-				} else {
-					count = 1;
-				}
-			}
-			streakVowel = isVowel;
+			streakVowel = isVowel(x);
 			if (count > maxCount) {
 				maxCount = count;
 			}
 		}
 		return maxCount < 3;
+	}
+
+	private boolean isVowel(char input) {
+		char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+		for (char vowel : vowels) {
+			if (vowel == input) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
